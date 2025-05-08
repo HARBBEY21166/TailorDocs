@@ -1,0 +1,49 @@
+
+import React from 'react';
+import { Button } from './ui/button';
+import { Loader2 } from 'lucide-react';
+
+interface ActionButtonsProps {
+  onGenerateCoverLetter: () => void;
+  onEnhanceCv: () => void;
+  loading: 'coverLetter' | 'cv' | null;
+}
+
+const ActionButtons: React.FC<ActionButtonsProps> = ({ 
+  onGenerateCoverLetter, 
+  onEnhanceCv, 
+  loading 
+}) => {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <Button 
+        onClick={onGenerateCoverLetter}
+        disabled={loading !== null}
+        className="w-full"
+      >
+        {loading === 'coverLetter' ? (
+          <>
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            Generating...
+          </>
+        ) : 'Generate Cover Letter'}
+      </Button>
+      
+      <Button
+        onClick={onEnhanceCv}
+        disabled={loading !== null}
+        variant="outline"
+        className="w-full"
+      >
+        {loading === 'cv' ? (
+          <>
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            Updating...
+          </>
+        ) : 'Update CV'}
+      </Button>
+    </div>
+  );
+};
+
+export default ActionButtons;

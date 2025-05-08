@@ -1,14 +1,13 @@
 
 import React, { useState } from 'react';
-import { Button } from '../components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
 import ApiKeyInput from '../components/ApiKeyInput';
 import JobForm, { JobFormData } from '../components/JobForm';
-import OutputDisplay from '../components/OutputDisplay';
 import { generateCoverLetter, enhanceCv } from '../services/geminiService';
 import { hasApiKey } from '../utils/localStorageUtils';
 import { useToast } from '../hooks/use-toast';
-import { Loader2 } from 'lucide-react';
+import ActionButtons from '../components/ActionButtons';
+import OutputSection from '../components/OutputSection';
 
 const Index = () => {
   const { toast } = useToast();
@@ -29,7 +28,6 @@ const Index = () => {
   };
 
   const validateForm = () => {
-    // Check if API key exists
     if (!hasApiKey()) {
       toast({
         title: "API Key Required",
@@ -39,7 +37,6 @@ const Index = () => {
       return false;
     }
 
-    // Check if required fields are filled
     if (!formData.cvContent.trim()) {
       toast({
         title: "CV Content Required",
@@ -144,69 +141,21 @@ const Index = () => {
           <TabsContent value="input" className="space-y-6">
             <JobForm onFormDataChange={handleFormDataChange} />
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Button 
-                onClick={handleGenerateCoverLetter}
-                disabled={loading !== null}
-                className="w-full"
-              >
-                {loading === 'coverLetter' ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Generating...
-                  </>
-                ) : 'Generate Cover Letter'}
-              </Button>
-              
-              <Button
-                onClick={handleEnhanceCv}
-                disabled={loading !== null}
-                variant="outline"
-                className="w-full"
-              >
-                {loading === 'cv' ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Updating...
-                  </>
-                ) : 'Update CV'}
-              </Button>
-            </div>
+            <ActionButtons 
+              onGenerateCoverLetter={handleGenerateCoverLetter}
+              onEnhanceCv={handleEnhanceCv}
+              loading={loading}
+            />
           </TabsContent>
           
           <TabsContent value="output" className="space-y-6">
-            {(coverLetter || enhancedCv) ? (
-              <>
-                {coverLetter && (
-                  <OutputDisplay 
-                    title={`Cover letter for ${formData.companyName}: ${formData.positionTitle}`}
-                    content={coverLetter}
-                    filename={`cover-letter-${formData.companyName.toLowerCase().replace(/\s+/g, '-')}.txt`}
-                  />
-                )}
-                
-                {enhancedCv && (
-                  <OutputDisplay 
-                    title="Enhanced CV"
-                    content={enhancedCv}
-                    filename={`enhanced-cv-${formData.companyName.toLowerCase().replace(/\s+/g, '-')}.txt`}
-                  />
-                )}
-                
-                <div className="text-center">
-                  <Button variant="outline" onClick={() => setActiveTab('input')}>
-                    Back to Input Form
-                  </Button>
-                </div>
-              </>
-            ) : (
-              <div className="text-center p-8">
-                <p className="text-lg text-gray-600">Generate a cover letter or enhance your CV to see the results here.</p>
-                <Button variant="outline" onClick={() => setActiveTab('input')} className="mt-4">
-                  Back to Input Form
-                </Button>
-              </div>
-            )}
+            <OutputSection 
+              coverLetter={coverLetter}
+              enhancedCv={enhancedCv}
+              companyName={formData.companyName}
+              positionTitle={formData.positionTitle}
+              onBackToInput={() => setActiveTab('input')}
+            />
           </TabsContent>
         </Tabs>
       </div>
