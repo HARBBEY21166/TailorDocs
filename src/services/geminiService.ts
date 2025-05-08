@@ -62,7 +62,7 @@ export const generateContent = async (prompt: string): Promise<string> => {
   }
 };
 
-// Function to generate a cover letter
+// Function to generate a cover letter with the specified format
 export const generateCoverLetter = async (
   cvContent: string, 
   companyName: string, 
@@ -70,38 +70,76 @@ export const generateCoverLetter = async (
   jobRequirements: string, 
   jobDescription: string
 ): Promise<string> => {
+  const today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  
   const prompt = `
-Generate a cover letter using:
-- My qualifications: ${cvContent}
-- For ${positionTitle} at ${companyName}
-- Job requirements: ${jobRequirements}
-- Job description: ${jobDescription}
+Generate a professional cover letter using ONLY verifiable content from my CV:
+${cvContent}
 
-Output should be professional and tailored to this specific role. 
-Format it with a proper salutation, body paragraphs, and closing.
-Include a title: "Cover letter for ${companyName}: ${positionTitle}"
-  `;
+For ${positionTitle} at ${companyName}
+Job requirements: ${jobRequirements}
+Job description: ${jobDescription}
+
+FORMAT REQUIREMENTS:
+1. Start with this contact block:
+Abbey Aina
+olamilekansunday445@gmail.com
+${today}
+Hiring Manager
+${companyName}
+
+2. Begin with a warm, clear statement of interest, referencing the position and company.
+
+3. In 1-2 short paragraphs, highlight relevant skills/experiences from my CV that match the job requirements.
+
+4. Include a bullet list of 2-3 contributions or strengths based on my CV and the job role.
+
+5. Close with:
+- Reaffirmation of interest
+- Mention of values or mission fit
+- Thank the reader
+
+6. End with "Best regards," followed by "Abbey Aina"
+
+STRICT RULES:
+- Use only verifiable content from my CV
+- DO NOT include placeholders or imaginary projects
+- DO NOT duplicate links already found in the CV
+- DO NOT include the job ad text itself
+- Keep tone enthusiastic but professional
+- Limit paragraphs to 3 lines maximum
+`;
 
   return await generateContent(prompt);
 };
 
-// Function to enhance CV based on job requirements
+// Function to enhance CV based on job requirements with specific formatting
 export const enhanceCv = async (
   cvContent: string, 
   jobRequirements: string, 
   jobDescription: string
 ): Promise<string> => {
   const prompt = `
-Generate an updated CV using:
-- My current CV: ${cvContent}
-- Job requirements: ${jobRequirements}
-- Job description: ${jobDescription}
+Enhance this CV for a tech/design role:
+${cvContent}
 
-Output should be professional and tailored to this specific role.
-Reorder and highlight skills to match the job requirements.
-Keep the same basic structure but emphasize relevant experience and skills.
-DO NOT invent new experience or qualifications that aren't in the original CV.
-  `;
+Based on these job requirements:
+${jobRequirements}
+
+And this job description:
+${jobDescription}
+
+INSTRUCTIONS:
+- Keep the structure appropriate for tech/design roles
+- Emphasize relevant achievements and skills that match the job requirements
+- DO NOT change or reformat any existing links — preserve them exactly as they appear
+- Tailor tone and content to the position
+- Keep the structure and links from the original CV
+- Improve clarity, grammar, and flow professionally
+- DO NOT add introductory text like "Here's your CV"
+- DO NOT duplicate links already in the CV
+- Return ONLY the enhanced CV content
+`;
 
   return await generateContent(prompt);
 };

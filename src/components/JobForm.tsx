@@ -72,6 +72,9 @@ const JobForm: React.FC<JobFormProps> = ({ onFormDataChange }) => {
                 placeholder="Paste your full CV/resume content here..."
                 className="h-36 mt-1"
               />
+              <p className="mt-2 text-xs text-muted-foreground">
+                Paste your CV exactly as is. All links and formatting will be preserved in the enhanced version.
+              </p>
             </div>
           </div>
         </CardContent>
