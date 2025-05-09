@@ -121,10 +121,11 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-gray-50 flex flex-col">
+      <div className="flex-grow py-8">
       <div className="container px-4 sm:px-6 lg:px-8 max-w-5xl">
         <header className="mb-8 text-center">
-          <h1 className="text-3xl font-bold text-gray-900">Job Match Letter Generator</h1>
+          <h1 className="text-3xl font-bold text-gray-900">TailorDocs</h1>
           <p className="mt-2 text-lg text-gray-600">Create tailored cover letters and enhance your CV for job applications</p>
         </header>
 
@@ -160,6 +161,12 @@ const Index = () => {
         </Tabs>
       </div>
     </div>
+
+    {/* Dummy Footer */}
+    <footer className="bg-gray-100 text-center py-4 text-sm text-gray-500 border-t">
+      © {new Date().getFullYear()} TailorDocs. All rights reserved.
+    </footer>
+  </div>
   );
 };
 
