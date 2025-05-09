@@ -121,50 +121,65 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
-      <div className="flex-grow py-8">
-      <div className="container px-4 sm:px-6 lg:px-8 max-w-5xl">
-        <header className="mb-8 text-center">
-          <h1 className="text-3xl font-bold text-gray-900">TailorDocs</h1>
-          <p className="mt-2 text-lg text-gray-600">Create tailored cover letters and enhance your CV for job applications</p>
+    <div className="min-h-screen bg-white flex flex-col">
+    <div className="flex-grow py-12">
+      <div className="container px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+        <header className="mb-10 text-center">
+          <h1 className="text-4xl font-extrabold text-black tracking-tight">TailorDocs</h1>
+          <p className="mt-3 text-lg text-gray-600 max-w-2xl mx-auto">Create tailored cover letters and enhance your CV for job applications</p>
         </header>
-
-        <div className="mb-6">
+        
+        <div className="mb-8 bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-200">
           <ApiKeyInput />
         </div>
-
+        
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="mb-6">
-            <TabsTrigger value="input">Input</TabsTrigger>
-            <TabsTrigger value="output">Output</TabsTrigger>
+          <TabsList className="mb-8 flex bg-gray-100 p-1 rounded-md border border-gray-200 justify-center">
+            <TabsTrigger value="input" className="px-6 py-2 text-sm font-medium rounded-md data-[state=active]:bg-white data-[state=active]:text-black data-[state=active]:shadow-sm">Input</TabsTrigger>
+            <TabsTrigger value="output" className="px-6 py-2 text-sm font-medium rounded-md data-[state=active]:bg-white data-[state=active]:text-black data-[state=active]:shadow-sm">Output</TabsTrigger>
           </TabsList>
           
-          <TabsContent value="input" className="space-y-6">
-            <JobForm onFormDataChange={handleFormDataChange} />
+          <TabsContent value="input" className="space-y-8">
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+              <JobForm onFormDataChange={handleFormDataChange} />
+            </div>
             
             <ActionButtons 
               onGenerateCoverLetter={handleGenerateCoverLetter}
               onEnhanceCv={handleEnhanceCv}
               loading={loading}
+              className="flex justify-center gap-4"
             />
           </TabsContent>
           
-          <TabsContent value="output" className="space-y-6">
+          <TabsContent value="output" className="space-y-8">
             <OutputSection 
               coverLetter={coverLetter}
               enhancedCv={enhancedCv}
               companyName={formData.companyName}
               positionTitle={formData.positionTitle}
               onBackToInput={() => setActiveTab('input')}
+              className="bg-white rounded-lg shadow-sm border border-gray-200 p-6"
             />
           </TabsContent>
         </Tabs>
       </div>
     </div>
-
-    {/* Dummy Footer */}
-    <footer className="bg-gray-100 text-center py-4 text-sm text-gray-500 border-t">
-      © {new Date().getFullYear()} TailorDocs. All rights reserved.
+    
+    <footer className="bg-black text-white py-6 mt-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row justify-between items-center">
+          <div className="mb-4 md:mb-0">
+            <p className="font-medium">© {new Date().getFullYear()} TailorDocs</p>
+            <p className="text-sm text-gray-400">All rights reserved</p>
+          </div>
+          <div className="flex gap-6">
+            <span className="text-sm text-gray-400 hover:text-white cursor-pointer">Privacy</span>
+            <span className="text-sm text-gray-400 hover:text-white cursor-pointer">Terms</span>
+            <span className="text-sm text-gray-400 hover:text-white cursor-pointer">Contact</span>
+          </div>
+        </div>
+      </div>
     </footer>
   </div>
   );
