@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from './ui/button';
 import { Loader2 } from 'lucide-react';
@@ -24,7 +23,7 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
         {loading === 'coverLetter' ? (
           <>
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            Generating...
+            Wait a sec...
           </>
         ) : 'Generate Cover Letter'}
       </Button>
@@ -38,7 +37,7 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
         {loading === 'cv' ? (
           <>
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            Updating...
+            I'm on it...
           </>
         ) : 'Update CV'}
       </Button>
