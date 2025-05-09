@@ -36,9 +36,9 @@ const ApiKeyInput: React.FC = () => {
   return (
     <Card>
       <CardHeader className="pb-3">
-        <CardTitle className="text-lg font-semibold">Google Gemini API Key</CardTitle>
+        <CardTitle className="text-lg font-semibold">Google Gemini-2.0-flash API Key</CardTitle>
         <CardDescription>
-          Enter your API key to use the Gemini AI features
+          Enter your Gemini-2.0-flash for the App to work...
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -48,7 +48,7 @@ const ApiKeyInput: React.FC = () => {
               type={showKey ? 'text' : 'password'}
               value={apiKey}
               onChange={(e) => setApiKey(e.target.value)}
-              placeholder="Enter your Gemini API key"
+              placeholder="I'm waiting for the key"
               className="pr-10"
             />
             <button
