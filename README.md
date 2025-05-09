@@ -1,73 +1,66 @@
-# Welcome to your Lovable project
 
-## Project info
+# TailorDocs
 
-**URL**: https://lovable.dev/projects/c9138421-1871-4b53-8706-f0a1a626a398
+> A sleek AI-powered prompt playground built with **React**, **Vite**, **TypeScript**, **Tailwind CSS**, and **shadcn/ui**, powered by **Google Gemini 2.0 Flash**.
 
-## How can I edit this code?
+![TailorDocs Screenshot](https://tailor-docs.vercel.app/) <!-- (Optional: Replace with your app screenshot) -->
 
-There are several ways of editing your application.
+## 🚀 Live Demo
 
-**Use Lovable**
+[🔗 View TailorDocs Live](https://tailor-docs.vercel.app/)
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/c9138421-1871-4b53-8706-f0a1a626a398) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## ✨ Features
 
-**Use your preferred IDE**
+* 🔐 Save & manage your Google Gemini 2.0 Flash API key locally
+* 🧠 Interact with Gemini and view AI responses instantly
+* 📋 Copy or download results with one click
+* 🎨 Built with modern UI using `shadcn/ui` and Tailwind CSS
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+---
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## 🛠 Tech Stack
 
-Follow these steps:
+* **Vite**
+* **React + TypeScript**
+* **Tailwind CSS**
+* **shadcn/ui**
+* **Lucide Icons**
+* **Google Gemini API**
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+---
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## 📦 Getting Started
 
-# Step 3: Install the necessary dependencies.
-npm i
+Clone the repo and install dependencies:
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```bash
+git clone https://github.com/HARBBEY21166/TailorDocs.git
+cd TailorDocs
+npm install
+```
+
+Start the development server:
+
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+---
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 🔑 Setting Your API Key
 
-**Use GitHub Codespaces**
+1. Visit the app in your browser.
+2. Paste your **Google Gemini 2.0 Flash** API key into the input field.
+3. Click **Save Key** (stored only in your browser’s local storage).
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+> 💡 Don’t have an API key? Get one from [Google AI Studio](https://aistudio.google.com/app/apikey)
 
-## What technologies are used for this project?
+---
 
-This project is built with:
+## 📄 License
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+MIT © [Abiodun Aina](https://github.com/HARBBEY21166)
 
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/c9138421-1871-4b53-8706-f0a1a626a398) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+---
