@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from './ui/button';
 import { Loader2 } from 'lucide-react';
@@ -6,15 +7,17 @@ interface ActionButtonsProps {
   onGenerateCoverLetter: () => void;
   onEnhanceCv: () => void;
   loading: 'coverLetter' | 'cv' | null;
+  className?: string;
 }
 
 const ActionButtons: React.FC<ActionButtonsProps> = ({ 
   onGenerateCoverLetter, 
   onEnhanceCv, 
-  loading 
+  loading,
+  className = ''
 }) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div className={`grid grid-cols-1 md:grid-cols-2 gap-4 ${className}`}>
       <Button 
         onClick={onGenerateCoverLetter}
         disabled={loading !== null}

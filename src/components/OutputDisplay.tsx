@@ -4,7 +4,7 @@ import { Button } from '../components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../components/ui/card';
 import { copyToClipboard, downloadAsTextFile } from '../utils/fileUtils';
 import { convertToDocx, convertCoverLetterToDocx } from '../utils/docxUtils';
-import { Clipboard, Download, FileWord } from 'lucide-react';
+import { Clipboard, Download, FileText } from 'lucide-react';
 import { useToast } from '../hooks/use-toast';
 
 interface OutputDisplayProps {
@@ -92,7 +92,7 @@ const OutputDisplay: React.FC<OutputDisplayProps> = ({
           Download Text
         </Button>
         <Button variant="outline" onClick={handleDownloadDocx}>
-          <FileWord className="h-4 w-4 mr-2" />
+          <FileText className="h-4 w-4 mr-2" />
           Download DOCX
         </Button>
       </CardFooter>
