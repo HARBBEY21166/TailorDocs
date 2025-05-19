@@ -5,6 +5,7 @@ import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { saveFormData, getFormData } from '../utils/localStorageUtils';
+import FileUpload from './FileUpload';
 
 export interface JobFormData {
   cvContent: string;
@@ -54,6 +55,16 @@ const JobForm: React.FC<JobFormProps> = ({ onFormDataChange }) => {
     saveFormData(FORM_STORAGE_KEY, updatedFormData);
   };
 
+  const handleFileContent = (content: string) => {
+    const updatedFormData = { ...formData, cvContent: content };
+    
+    setFormData(updatedFormData);
+    onFormDataChange(updatedFormData);
+    
+    // Save to localStorage
+    saveFormData(FORM_STORAGE_KEY, updatedFormData);
+  };
+
   return (
     <div className="space-y-6">
       <Card>
@@ -63,17 +74,20 @@ const JobForm: React.FC<JobFormProps> = ({ onFormDataChange }) => {
         <CardContent>
           <div className="space-y-4">
             <div>
-              <Label htmlFor="cvContent" className="text-sm font-medium">Your CV/Resume Content</Label>
+              <div className="flex justify-between items-center mb-2">
+                <Label htmlFor="cvContent" className="text-sm font-medium">Your CV/Resume Content</Label>
+                <FileUpload onFileContent={handleFileContent} />
+              </div>
               <Textarea
                 id="cvContent"
                 name="cvContent"
                 value={formData.cvContent}
                 onChange={handleChange}
-                placeholder="Paste your full CV/resume content here..."
+                placeholder="Paste your full CV/resume content here or upload a .docx file..."
                 className="h-36 mt-1"
               />
               <p className="mt-2 text-xs text-muted-foreground">
-                Paste your CV exactly as is. All links and formatting will be preserved in the enhanced version.
+                Paste your CV exactly as is or upload a .docx file. All links and formatting will be preserved in the enhanced version.
               </p>
             </div>
           </div>

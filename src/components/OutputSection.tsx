@@ -9,6 +9,7 @@ interface OutputSectionProps {
   companyName: string;
   positionTitle: string;
   onBackToInput: () => void;
+  className?: string;
 }
 
 const OutputSection: React.FC<OutputSectionProps> = ({
@@ -17,9 +18,10 @@ const OutputSection: React.FC<OutputSectionProps> = ({
   companyName,
   positionTitle,
   onBackToInput,
+  className,
 }) => {
   return (
-    <div className="space-y-6">
+    <div className={`space-y-6 ${className || ''}`}>
       {(coverLetter || enhancedCv) ? (
         <>
           {coverLetter && (
@@ -27,6 +29,7 @@ const OutputSection: React.FC<OutputSectionProps> = ({
               title={`Cover letter for ${companyName}: ${positionTitle}`}
               content={coverLetter}
               filename={`cover-letter-${companyName.toLowerCase().replace(/\s+/g, '-')}.txt`}
+              type="coverLetter"
             />
           )}
           
@@ -35,6 +38,7 @@ const OutputSection: React.FC<OutputSectionProps> = ({
               title="Enhanced CV"
               content={enhancedCv}
               filename={`enhanced-cv-${companyName.toLowerCase().replace(/\s+/g, '-')}.txt`}
+              type="cv"
             />
           )}
           

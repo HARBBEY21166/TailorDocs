@@ -3,16 +3,25 @@ import React from 'react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../components/ui/card';
 import { copyToClipboard, downloadAsTextFile } from '../utils/fileUtils';
-import { Clipboard, Download } from 'lucide-react';
+import { convertToDocx, convertCoverLetterToDocx } from '../utils/docxUtils';
+import { Clipboard, Download, FileWord } from 'lucide-react';
 import { useToast } from '../hooks/use-toast';
 
 interface OutputDisplayProps {
   title: string;
   content: string;
   filename: string;
+  type?: 'cv' | 'coverLetter';
+  className?: string;
 }
 
-const OutputDisplay: React.FC<OutputDisplayProps> = ({ title, content, filename }) => {
+const OutputDisplay: React.FC<OutputDisplayProps> = ({ 
+  title, 
+  content, 
+  filename,
+  type = 'cv',
+  className
+}) => {
   const { toast } = useToast();
 
   const handleCopy = async () => {
@@ -39,11 +48,32 @@ const OutputDisplay: React.FC<OutputDisplayProps> = ({ title, content, filename 
     });
   };
 
+  const handleDownloadDocx = () => {
+    try {
+      if (type === 'coverLetter') {
+        convertCoverLetterToDocx(content, filename.replace('.txt', ''));
+      } else {
+        convertToDocx(content, filename.replace('.txt', ''));
+      }
+      
+      toast({
+        title: "Downloaded as DOCX",
+        description: `Content has been downloaded as a Word document`,
+      });
+    } catch (error) {
+      toast({
+        title: "Download failed",
+        description: "Failed to create DOCX file.",
+        variant: "destructive",
+      });
+    }
+  };
+
   // If there's no content, don't render this component
   if (!content) return null;
 
   return (
-    <Card className="mb-6">
+    <Card className={`mb-6 ${className}`}>
       <CardHeader className="pb-3">
         <CardTitle>{title}</CardTitle>
       </CardHeader>
@@ -59,7 +89,11 @@ const OutputDisplay: React.FC<OutputDisplayProps> = ({ title, content, filename 
         </Button>
         <Button variant="outline" onClick={handleDownload}>
           <Download className="h-4 w-4 mr-2" />
-          Download
+          Download Text
+        </Button>
+        <Button variant="outline" onClick={handleDownloadDocx}>
+          <FileWord className="h-4 w-4 mr-2" />
+          Download DOCX
         </Button>
       </CardFooter>
     </Card>
