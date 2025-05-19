@@ -21,12 +21,12 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
       <Button 
         onClick={onGenerateCoverLetter}
         disabled={loading !== null}
-        className="w-full"
+        className="w-full py-6 bg-black hover:bg-gray-900 text-white rounded-lg shadow-md transition-all hover:shadow-lg"
       >
         {loading === 'coverLetter' ? (
           <>
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            Wait a sec...
+            Generating...
           </>
         ) : 'Generate Cover Letter'}
       </Button>
@@ -35,12 +35,12 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
         onClick={onEnhanceCv}
         disabled={loading !== null}
         variant="outline"
-        className="w-full"
+        className="w-full py-6 border-2 border-black text-black hover:bg-gray-50 rounded-lg shadow-md transition-all hover:shadow-lg"
       >
         {loading === 'cv' ? (
           <>
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            I'm on it...
+            Enhancing...
           </>
         ) : 'Update CV'}
       </Button>

@@ -73,25 +73,25 @@ const OutputDisplay: React.FC<OutputDisplayProps> = ({
   if (!content) return null;
 
   return (
-    <Card className={`mb-6 ${className}`}>
-      <CardHeader className="pb-3">
-        <CardTitle>{title}</CardTitle>
+    <Card className={`mb-6 hover-lift border border-gray-200 ${className}`}>
+      <CardHeader className="pb-3 border-b border-gray-100">
+        <CardTitle className="text-xl font-bold">{title}</CardTitle>
       </CardHeader>
-      <CardContent>
-        <div className="whitespace-pre-wrap bg-gray-50 p-4 rounded-md border border-gray-200 max-h-[60vh] overflow-y-auto">
+      <CardContent className="pt-5">
+        <div className="whitespace-pre-wrap bg-gray-50 p-5 rounded-md border border-gray-100 max-h-[60vh] overflow-y-auto shadow-inner">
           {content}
         </div>
       </CardContent>
-      <CardFooter className="flex justify-end space-x-2">
-        <Button variant="outline" onClick={handleCopy}>
+      <CardFooter className="flex flex-wrap justify-end gap-3 pt-4">
+        <Button variant="outline" onClick={handleCopy} className="border-black text-black hover:bg-gray-50">
           <Clipboard className="h-4 w-4 mr-2" />
           Copy
         </Button>
-        <Button variant="outline" onClick={handleDownload}>
+        <Button variant="outline" onClick={handleDownload} className="border-black text-black hover:bg-gray-50">
           <Download className="h-4 w-4 mr-2" />
           Download Text
         </Button>
-        <Button variant="outline" onClick={handleDownloadDocx}>
+        <Button onClick={handleDownloadDocx} className="bg-black text-white hover:bg-gray-800">
           <FileText className="h-4 w-4 mr-2" />
           Download DOCX
         </Button>

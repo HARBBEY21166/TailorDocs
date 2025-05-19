@@ -64,17 +64,17 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				brand: {
-					50: '#eef6ff',
-					100: '#d9ebff', 
-					200: '#bcdafe',
-					300: '#8bc2fc',
-					400: '#56a3f8', 
-					500: '#3182f6',
-					600: '#2061d9',
-					700: '#1d4fc0',
-					800: '#1e429d',
-					900: '#1e3b7d',
-					950: '#172554',
+					50: '#f8f9fa',
+					100: '#eaebed',
+					200: '#d5d7db',
+					300: '#b0b3bc',
+					400: '#888b96', 
+					500: '#64676f',
+					600: '#4c4e55',
+					700: '#3c3e43',
+					800: '#232428',
+					900: '#121214',
+					950: '#0a0a0b',
 				},
 			},
 			borderRadius: {
@@ -98,11 +98,21 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'fade-in': {
+					from: { opacity: '0', transform: 'translateY(10px)' },
+					to: { opacity: '1', transform: 'translateY(0)' }
+				},
+				'fade-out': {
+					from: { opacity: '1', transform: 'translateY(0)' },
+					to: { opacity: '0', transform: 'translateY(10px)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.3s ease-out',
+				'fade-out': 'fade-out 0.3s ease-out'
 			}
 		}
 	},
